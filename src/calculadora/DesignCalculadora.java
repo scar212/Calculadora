@@ -2,7 +2,7 @@
 package calculadora;
 
 public class DesignCalculadora extends javax.swing.JFrame {
-    int contenedor1, contenedor2;
+    String contenedor1, contenedor2;
     String signo;
     public DesignCalculadora() {
         initComponents();
@@ -40,7 +40,7 @@ public class DesignCalculadora extends javax.swing.JFrame {
         setBackground(new java.awt.Color(153, 0, 0));
 
         pantalla.setBackground(new java.awt.Color(0, 0, 0));
-        pantalla.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 36)); // NOI18N
+        pantalla.setFont(new java.awt.Font("Franklin Gothic Demi Cond", 0, 21)); // NOI18N
         pantalla.setForeground(new java.awt.Color(255, 255, 255));
 
         C.setBackground(new java.awt.Color(102, 102, 102));
@@ -315,13 +315,20 @@ public class DesignCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_CActionPerformed
 
     private void moduloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moduloActionPerformed
-        Double num;
         String cadena;
         cadena = pantalla.getText();
-        if(cadena.length()> 0){
-            num = (-1)* Double.parseDouble(cadena);
-            pantalla.setText(num.toString());
+           if(punto(pantalla.getText())){
+           Double num;
+           num = (-1)* Double.parseDouble(cadena);
+           pantalla.setText(num.toString());
         }
+        else {
+            if(!punto(pantalla.getText())){
+               int num;
+               num = (-1)*Integer.parseInt(cadena);
+               pantalla.setText(String.valueOf(num));
+            }
+        }  
     }//GEN-LAST:event_moduloActionPerformed
 
     private void eightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eightActionPerformed
@@ -428,7 +435,7 @@ public class DesignCalculadora extends javax.swing.JFrame {
 
     private void sumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaActionPerformed
         if(!pantalla.getText().equals("")){
-        contenedor1 = Integer.parseInt(pantalla.getText());
+        contenedor1 = pantalla.getText();
         signo = "+";
         pantalla.setText("");
         }
@@ -436,26 +443,69 @@ public class DesignCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_sumaActionPerformed
 
     private void igualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_igualActionPerformed
-        int resultado;
-        contenedor2 = Integer.parseInt(pantalla.getText());
+        contenedor2 = pantalla.getText();
         if(signo == "+"){
-            resultado = contenedor1 + contenedor2;
-            pantalla.setText(String.valueOf(resultado));
-        }else if (signo == "-"){
-            resultado = contenedor1 - contenedor2;
-            pantalla.setText(String.valueOf(resultado));
-        }else if (signo == "*"){
-            resultado = contenedor1 * contenedor2;
-            pantalla.setText(String.valueOf(resultado));
-        }else if (signo == "/"){
-            resultado = contenedor1 / contenedor2;
-            pantalla.setText(String.valueOf(resultado));
+            if(punto(pantalla.getText())){
+           Double resultado;
+           resultado = Double.parseDouble(contenedor1) + Double.parseDouble(contenedor2);
+           pantalla.setText(resultado.toString());
         }
+        else {
+            if(!punto(pantalla.getText())){
+               int resultado;
+                resultado = Integer.parseInt(contenedor1) + Integer.parseInt(contenedor2); 
+                pantalla.setText(String.valueOf(resultado));
+            }
+        }
+        }
+        if(signo == "-"){
+            if(punto(pantalla.getText())){
+           Double resultado;
+           resultado = Double.parseDouble(contenedor1) - Double.parseDouble(contenedor2);
+           pantalla.setText(resultado.toString());
+        }
+        else {
+            if(!punto(pantalla.getText())){
+               int resultado;
+                resultado = Integer.parseInt(contenedor1) - Integer.parseInt(contenedor2); 
+                pantalla.setText(String.valueOf(resultado));
+            }
+        }
+        }
+        if(signo == "*"){
+            if(punto(pantalla.getText())){
+           Double resultado;
+           resultado = Double.parseDouble(contenedor1) * Double.parseDouble(contenedor2);
+           pantalla.setText(resultado.toString());
+        }
+        else {
+            if(!punto(pantalla.getText())){
+               int resultado;
+                resultado = Integer.parseInt(contenedor1) * Integer.parseInt(contenedor2); 
+                pantalla.setText(String.valueOf(resultado));
+            }
+        }
+        }
+        if(signo == "/"){
+            if(punto(pantalla.getText())){
+           Double resultado;
+           resultado = Double.parseDouble(contenedor1) / Double.parseDouble(contenedor2);
+           pantalla.setText(resultado.toString());
+        }
+        else {
+            if(!punto(pantalla.getText())){
+               int resultado;
+                resultado = Integer.parseInt(contenedor1) / Integer.parseInt(contenedor2); 
+                pantalla.setText(String.valueOf(resultado));
+            }
+        }
+        }
+           
     }//GEN-LAST:event_igualActionPerformed
 
     private void restaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaActionPerformed
         if(!pantalla.getText().equals("")){
-        contenedor1 = Integer.parseInt(pantalla.getText());
+        contenedor1 = pantalla.getText();
         signo = "-";
         pantalla.setText("");
         }
@@ -463,7 +513,7 @@ public class DesignCalculadora extends javax.swing.JFrame {
 
     private void multActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multActionPerformed
         if(!pantalla.getText().equals("")){
-        contenedor1 = Integer.parseInt(pantalla.getText());
+        contenedor1 = pantalla.getText();
         signo = "*";
         pantalla.setText("");
         }
@@ -471,7 +521,7 @@ public class DesignCalculadora extends javax.swing.JFrame {
 
     private void divisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divisionActionPerformed
         if(!pantalla.getText().equals("")){
-        contenedor1 = Integer.parseInt(pantalla.getText());
+        contenedor1 = pantalla.getText();
         signo = "/";
         pantalla.setText("");
         }
